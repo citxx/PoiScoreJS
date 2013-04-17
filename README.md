@@ -1,7 +1,7 @@
 PoiScoreJS
 ==========
 
-This library allows you to generate different variations of [PoiScore][http://www.yutapoi.com/poiclasses/event/moscow-2013-spring/#h.19974gy77hpx] PDFs on client side.
+This library allows you to generate different variations of [PoiScore](http://www.yutapoi.com/poiclasses/event/moscow-2013-spring/#h.19974gy77hpx) PDFs on client side.
 
 Usage
 =====
