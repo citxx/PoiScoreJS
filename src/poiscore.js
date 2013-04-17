@@ -26,10 +26,8 @@
 
 var PoiScore = {
     defaultProps: {
-        withDescription: true,
-        descriptionSize: 4,
-        withSideField: true,
-        sideFieldSize: 45,
+        descriptionSize: 4,  // Size of description box in lines. Zero if not wanted.
+        sideFieldSize: 0.25,  // Size of comment box in relation to body width. Zero if not wanted.
         subGroupSize: 4,
         groupSize: 2,
         lineSize: 4,
@@ -121,8 +119,8 @@ var PoiScore = {
     addBody: function(doc, props, x, y, width, height) {
         doc.setLineWidth(0.3);
         doc.rect(x, y, width, height);
-        if (props.withSideField) {
-            var xpos = x + props.sideFieldSize;
+        if (props.sideFieldSize > 0) {
+            var xpos = x + props.sideFieldSize * width;
             doc.line(xpos, y, xpos, y + height);
             this.addWorkspace(doc, props, xpos, y, width - (xpos - x), height);
         }
@@ -132,7 +130,7 @@ var PoiScore = {
     },
     
     addWorkspace: function(doc, props, x, y, width, height) {
-        if (props.withDescription) {
+        if (props.descriptionSize > 0) {
             var descHeight = height / props.linesNumber * props.descriptionSize;
             var ypos = y + descHeight;
             var linesNumber = props.linesNumber - props.descriptionSize;
