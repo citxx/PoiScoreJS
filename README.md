@@ -20,6 +20,8 @@ In order to use PoiScoreJS you should first include the library and all its depe
 <script type="text/javascript" src="assets/poiscore.js"></script>
 ```
 
+And then you can use it as follows:
+
 ```javascript
 var score = PoiScore.gen([  // Generate PDF
     PoiScore.properties({}),  // Default page
@@ -42,7 +44,7 @@ License
 
 (MIT License)
 
-Copyright (c) 2013 Artem Tabolin, https://github.com/citxx/poiscore-js
+Copyright (c) 2013 Artem Tabolin, https://github.com/citxx/PoiScoreJS
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
