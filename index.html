@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PoiScoreJS test page</title>
+	<script type="text/javascript" src="src/poiscore.js"></script>
+	<script type="text/javascript" src="libs/raphael-min.js"></script>
+	<script type="text/javascript" src="libs/jspdf.min.js"></script>
+	<script type="text/javascript" src="libs/jspdf.plugin.ie_below_9_shim.js"></script>
+
+	<style type="text/css">
+		.svg-container {
+			border: 1px solid #AAEEAA;
+			/*width: 500px;*/
+			/*text-align: cen;*/
+			padding: 0px;
+			margin: 3px;
+			float: left;
+		}
+
+		.page-holder {
+			text-align: center;
+			overflow: auto;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="page-holder">
+		<div id="example-head" class="svg-container"></div>
+		<div id="example-full" class="svg-container"></div>
+	</div>
+	<input type="button" value="Get PDF" onclick="generatePDF().save();"/>
+
+	<script type="text/javascript">
+		var paperHead = Raphael('example-head', 261, 401);
+		var rendererHead = new PoiScore.raphaelSVGRenderer(paperHead, 260, 400);
+		PoiScore.genPage(rendererHead, {});
+
+		var paperFull = Raphael('example-full', 261, 401);
+		var rendererFull = new PoiScore.raphaelSVGRenderer(paperFull, 260, 400);
+		PoiScore.genPage(rendererFull, {linesInDescriptionBox: 0});
+
+		function generatePDF() {
+			var doc = new jsPDF();
+			var renderer = new PoiScore.jsPDFRenderer(doc);
+			PoiScore.gen(renderer, [{}, {linesInDescriptionBox: 0}]);
+
+			return doc;
+		}
+	</script>
+</body>
+</html>

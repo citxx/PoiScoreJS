@@ -20,16 +20,20 @@ In order to use PoiScoreJS you should first include the library and all its depe
 <script type="text/javascript" src="assets/poiscore.js"></script>
 ```
 
+And then you can use it as follows:
+
 ```javascript
-var score = PoiScore.gen([  // Generate PDF
-    PoiScore.properties({}),  // Default page
-    PoiScore.properties({withDescription: false}),  // Page without description area
-    PoiScore.properties({withSideField: false}),  // Page without fields
-    PoiScore.properties({    // A page with:
-        subGroupSize: 3,     // * subgroup size of 3 cells
-        groupSize: 4,        // * group size of 4 subgroups 
-        lineSize: 3,         // * line size of 3 groups
-        sideFieldSize: 35    // * specific side field size (in mm)
+var score = new jsPDF();
+var renderer = new PoiScore.jsPDFRenderer(score);
+PoiScore.gen(renderer, [  // Generate PDF
+    {},  // Default page
+    {linesInDescriptionBox: 0, commentBoxFraction: 0},  // Page without description and comment boxes
+    {pageNumeration: false, groupNumeration: false},  // Page without group and page numbers
+    {    // A page with:
+        cellsPerSubgroup: 3,        // * subgroup size of 3 cells
+        subgroupsPerGroup: 4,       // * group size of 4 subgroups 
+        groupsPerLine: 3,           // * line size of 3 groups
+        commentBoxFraction: 0.35    // * width of comment box as a fraction of 1
     })
 ]);
 
@@ -42,7 +46,7 @@ License
 
 (MIT License)
 
-Copyright (c) 2013 Artem Tabolin, https://github.com/citxx/poiscore-js
+Copyright (c) 2013 Artem Tabolin, https://github.com/citxx/PoiScoreJS
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
