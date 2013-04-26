@@ -4,8 +4,8 @@
 	<title>PoiScoreJS test page</title>
 	<script type="text/javascript" src="src/poiscore.js"></script>
 	<script type="text/javascript" src="libs/raphael-min.js"></script>
-	<script type="text/javascript" src="assets/js/jspdf.min.js"></script>
-	<script type="text/javascript" src="assets/js/jspdf.plugin.ie_below_9_shim.js"></script>
+	<script type="text/javascript" src="libs/jspdf.min.js"></script>
+	<script type="text/javascript" src="libs/jspdf.plugin.ie_below_9_shim.js"></script>
 
 	<style type="text/css">
 		.svg-container {
@@ -35,18 +35,16 @@
 	<script type="text/javascript">
 		var paperHead = Raphael('example-head', 261, 401);
 		var rendererHead = new PoiScore.raphaelSVGRenderer(paperHead, 260, 400);
-		PoiScore.genPage(rendererHead, PoiScore.properties());
+		PoiScore.genPage(rendererHead, {});
 
 		var paperFull = Raphael('example-full', 261, 401);
 		var rendererFull = new PoiScore.raphaelSVGRenderer(paperFull, 260, 400);
-		PoiScore.genPage(rendererFull, PoiScore.properties({
-			linesInDescriptionBox: 0
-		}));
+		PoiScore.genPage(rendererFull, {linesInDescriptionBox: 0});
 
 		function generatePDF() {
 			var doc = new jsPDF();
-			var renderer = new jsPDFRenderer(doc);
-			PoiScore.gen(renderer, pages);
+			var renderer = new PoiScore.jsPDFRenderer(doc);
+			PoiScore.gen(renderer, [{}, {linesInDescriptionBox: 0}]);
 
 			return doc;
 		}
