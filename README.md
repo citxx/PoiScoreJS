@@ -23,15 +23,17 @@ In order to use PoiScoreJS you should first include the library and all its depe
 And then you can use it as follows:
 
 ```javascript
-var score = PoiScore.gen([  // Generate PDF
-    PoiScore.properties({}),  // Default page
-    PoiScore.properties({withDescription: false}),  // Page without description area
-    PoiScore.properties({withSideField: false}),  // Page without fields
-    PoiScore.properties({    // A page with:
-        subGroupSize: 3,     // * subgroup size of 3 cells
-        groupSize: 4,        // * group size of 4 subgroups 
-        lineSize: 3,         // * line size of 3 groups
-        sideFieldSize: 35    // * specific side field size (in mm)
+var score = new jsPDF();
+var renderer = new PoiScore.jsPDFRenderer(score);
+PoiScore.gen(renderer, [  // Generate PDF
+    {},  // Default page
+    {linesInDescriptionBox: 0, commentBoxFraction: 0},  // Page without description and comment boxes
+    {pageNumeration: false, groupNumeration: false},  // Page without group and page numbers
+    {    // A page with:
+        cellsPerSubgroup: 3,        // * subgroup size of 3 cells
+        subgroupsPerGroup: 4,       // * group size of 4 subgroups 
+        groupsPerLine: 3,           // * line size of 3 groups
+        commentBoxFraction: 0.35    // * width of comment box as a fraction of 1
     })
 ]);
 
